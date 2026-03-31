@@ -107,11 +107,13 @@
 
   .hero-eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 500;
     letter-spacing: 6px;
-    color: #8a6520;
+    color: #3a2010;
     margin-bottom: 24px;
     animation: fadeUp 1.4s 0.2s ease both;
+    text-shadow: 0 1px 3px rgba(255,240,220,0.6);
   }
 
   .hero-names {
@@ -530,23 +532,6 @@
   }
 
   /* Decorative watercolor rose SVG backgrounds */
-  .bg-roses-left {
-    position: absolute;
-    left: -60px;
-    bottom: 60px;
-    opacity: 0.18;
-    width: 320px;
-    pointer-events: none;
-  }
-  .bg-roses-right {
-    position: absolute;
-    right: -60px;
-    top: 80px;
-    opacity: 0.15;
-    width: 280px;
-    pointer-events: none;
-    transform: scaleX(-1);
-  }
 
   @media (max-width: 600px) {
     nav { gap: 20px; padding: 14px 16px; flex-wrap: wrap; }
@@ -558,10 +543,22 @@
     section { padding: 70px 24px; }
     .rsvp-form-box { padding: 28px 20px; }
   }
+
+  /* Scroll progress bar */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(to right, var(--rose-light), var(--gold));
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
 </style>
 </head>
 <body>
 
+<div class="progress-bar" id="progressBar"></div>
 <nav>
   <a href="#home">Home</a>
   <a href="#schedule">Schedule</a>
@@ -576,58 +573,6 @@
   <div class="hero-img-fade"></div>
 
   <!-- Decorative SVG rose clusters -->
-  <svg class="bg-roses-left" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="80" cy="200" rx="60" ry="50" fill="#c9667e"/>
-    <ellipse cx="120" cy="160" rx="55" ry="45" fill="#a0324e"/>
-    <ellipse cx="60" cy="150" rx="50" ry="42" fill="#d4849a"/>
-    <ellipse cx="150" cy="190" rx="48" ry="40" fill="#c9667e"/>
-    <ellipse cx="100" cy="120" rx="45" ry="38" fill="#a0324e"/>
-    <ellipse cx="40" cy="220" rx="52" ry="44" fill="#d4849a"/>
-    <ellipse cx="170" cy="150" rx="42" ry="36" fill="#b85070"/>
-    <ellipse cx="90" cy="240" rx="38" ry="32" fill="#c9667e"/>
-    <ellipse cx="130" cy="100" rx="40" ry="34" fill="#a0324e"/>
-    <ellipse cx="180" cy="220" rx="44" ry="38" fill="#d4849a"/>
-    <ellipse cx="60" cy="280" rx="36" ry="30" fill="#b85070"/>
-    <ellipse cx="140" cy="260" rx="50" ry="42" fill="#c9667e"/>
-    <ellipse cx="200" cy="180" rx="38" ry="32" fill="#a0324e"/>
-    <ellipse cx="30" cy="170" rx="34" ry="28" fill="#d4849a"/>
-    <ellipse cx="110" cy="290" rx="42" ry="36" fill="#b85070"/>
-    <ellipse cx="70" cy="320" rx="46" ry="38" fill="#c9667e"/>
-    <ellipse cx="160" cy="300" rx="40" ry="34" fill="#a0324e"/>
-    <ellipse cx="220" cy="240" rx="36" ry="30" fill="#d4849a"/>
-    <ellipse cx="50" cy="360" rx="38" ry="32" fill="#b85070"/>
-    <ellipse cx="120" cy="350" rx="44" ry="38" fill="#c9667e"/>
-    <!-- leaves -->
-    <ellipse cx="100" cy="340" rx="30" ry="14" fill="#5a7a40" transform="rotate(-20 100 340)" opacity="0.7"/>
-    <ellipse cx="60" cy="260" rx="28" ry="12" fill="#7a9e5c" transform="rotate(15 60 260)" opacity="0.7"/>
-    <ellipse cx="180" cy="270" rx="26" ry="11" fill="#5a7a40" transform="rotate(-10 180 270)" opacity="0.7"/>
-    <ellipse cx="140" cy="200" rx="24" ry="10" fill="#7a9e5c" transform="rotate(25 140 200)" opacity="0.6"/>
-  </svg>
-
-  <svg class="bg-roses-right" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="80" cy="200" rx="60" ry="50" fill="#c9667e"/>
-    <ellipse cx="120" cy="160" rx="55" ry="45" fill="#a0324e"/>
-    <ellipse cx="60" cy="150" rx="50" ry="42" fill="#d4849a"/>
-    <ellipse cx="150" cy="190" rx="48" ry="40" fill="#c9667e"/>
-    <ellipse cx="100" cy="120" rx="45" ry="38" fill="#a0324e"/>
-    <ellipse cx="40" cy="220" rx="52" ry="44" fill="#d4849a"/>
-    <ellipse cx="170" cy="150" rx="42" ry="36" fill="#b85070"/>
-    <ellipse cx="90" cy="240" rx="38" ry="32" fill="#c9667e"/>
-    <ellipse cx="130" cy="100" rx="40" ry="34" fill="#a0324e"/>
-    <ellipse cx="180" cy="220" rx="44" ry="38" fill="#d4849a"/>
-    <ellipse cx="60" cy="280" rx="36" ry="30" fill="#b85070"/>
-    <ellipse cx="140" cy="260" rx="50" ry="42" fill="#c9667e"/>
-    <ellipse cx="30" cy="170" rx="34" ry="28" fill="#d4849a"/>
-    <ellipse cx="110" cy="290" rx="42" ry="36" fill="#b85070"/>
-    <ellipse cx="70" cy="320" rx="46" ry="38" fill="#c9667e"/>
-    <ellipse cx="160" cy="300" rx="40" ry="34" fill="#a0324e"/>
-    <ellipse cx="50" cy="360" rx="38" ry="32" fill="#b85070"/>
-    <ellipse cx="120" cy="350" rx="44" ry="38" fill="#c9667e"/>
-    <ellipse cx="100" cy="340" rx="30" ry="14" fill="#5a7a40" transform="rotate(-20 100 340)" opacity="0.7"/>
-    <ellipse cx="60" cy="260" rx="28" ry="12" fill="#7a9e5c" transform="rotate(15 60 260)" opacity="0.7"/>
-    <ellipse cx="180" cy="270" rx="26" ry="11" fill="#5a7a40" transform="rotate(-10 180 270)" opacity="0.7"/>
-    <ellipse cx="140" cy="200" rx="24" ry="10" fill="#7a9e5c" transform="rotate(25 140 200)" opacity="0.6"/>
-  </svg>
 
   <div class="hero-content">
     <p class="hero-eyebrow">✦ &nbsp; We Are Getting Married &nbsp; ✦</p>
@@ -639,7 +584,7 @@
     <div class="hero-divider">
       <div class="line"></div><div class="diamond"></div><div class="line"></div>
     </div>
-    <p class="hero-date">Sunday, July 19 · 2025</p>
+    <p class="hero-date">Sunday, July 19 · 2026</p>
     <p class="hero-venue">Rotch-Jones-Duff House &amp; Garden Museum</p>
 
     <div class="countdown" id="countdown">
@@ -738,7 +683,10 @@
   <div class="venue-card">
     <p class="venue-name">Rotch-Jones-Duff House &amp; Garden Museum</p>
     <p class="venue-address">396 County Street<br>New Bedford, MA 02740</p>
-    <a class="map-btn" href="https://maps.google.com/?q=396+County+St+New+Bedford+MA+02740" target="_blank">View on Map</a>
+    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--brown-mid); line-height:1.9; max-width:480px; margin: 0 auto 32px; opacity:0.85;">
+      One of New Bedford's most cherished landmarks, the Rotch-Jones-Duff House &amp; Garden Museum is a stunning 1834 Greek Revival mansion set among an acre of breathtaking English-style gardens — the perfect setting to celebrate our love surrounded by roses in full bloom.
+    </p>
+    <a class="map-btn" href="https://maps.app.goo.gl/eVgx467p8nfFj59i7" target="_blank">View on Map</a>
   </div>
 </section>
 
@@ -754,24 +702,12 @@
     Your presence is the greatest gift of all.<br>For those who wish to give, we are registered at the following:
   </p>
 
-  <div class="registry-grid">
-    <div class="registry-card">
-      <span class="registry-icon">🏠</span>
-      <p class="registry-store">Williams-Sonoma</p>
-      <p class="registry-note">Kitchen &amp; Home</p>
-      <a class="registry-link" href="#">View Registry</a>
-    </div>
-    <div class="registry-card">
-      <span class="registry-icon">✨</span>
-      <p class="registry-store">Crate &amp; Barrel</p>
-      <p class="registry-note">Home &amp; Décor</p>
-      <a class="registry-link" href="#">View Registry</a>
-    </div>
-    <div class="registry-card">
-      <span class="registry-icon">🌍</span>
-      <p class="registry-store">Honeymoon Fund</p>
-      <p class="registry-note">Contribute to our adventure</p>
-      <a class="registry-link" href="#">Contribute</a>
+  <div style="display:flex; justify-content:center;">
+    <div class="registry-card" style="max-width:300px; width:100%;">
+      <span class="registry-icon">💍</span>
+      <p class="registry-store">Zola</p>
+      <p class="registry-note">Our full wedding registry</p>
+      <a class="registry-link" href="https://www.zola.com/registry/ferhatandzehra" target="_blank">View Registry</a>
     </div>
   </div>
 </section>
@@ -790,50 +726,16 @@
       Please let us know if you are able to join us.
     </p>
 
-    <div class="rsvp-form-box">
-      <div class="form-grid">
-        <div class="form-row">
-          <label>First Name</label>
-          <input type="text" placeholder="Your first name">
-        </div>
-        <div class="form-row">
-          <label>Last Name</label>
-          <input type="text" placeholder="Your last name">
-        </div>
-      </div>
-      <div class="form-row">
-        <label>Email Address</label>
-        <input type="email" placeholder="your@email.com">
-      </div>
-      <div class="form-grid">
-        <div class="form-row">
-          <label>Attendance</label>
-          <select>
-            <option value="">Please select</option>
-            <option>Joyfully accepts</option>
-            <option>Regretfully declines</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label>Number of Guests</label>
-          <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <label>Dietary Requirements</label>
-        <input type="text" placeholder="Any allergies or dietary needs?">
-      </div>
-      <div class="form-row">
-        <label>A Note for the Couple</label>
-        <textarea placeholder="Share your wishes with Zehra & Ferhat…"></textarea>
-      </div>
-      <button class="submit-btn" onclick="handleRSVP()">Send RSVP ✦</button>
-      <p class="form-note">Once your Google Form is ready, this will link directly to it.</p>
+    <div class="rsvp-form-box" style="padding: 0; overflow: hidden; background: transparent; border: none;">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSf73XCvMjTov2CsFj8xcsXy-Qp9p_Q6v05JzgdyTeMgpUbtkw/viewform?embedded=true"
+        width="100%"
+        height="900"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        style="border-radius: 4px; display: block;"
+      >Loading RSVP form…</iframe>
     </div>
   </div>
 </div>
@@ -841,7 +743,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-names">Zehra &amp; Ferhat</div>
-  <div class="footer-date">July 19 · 2025 · New Bedford, MA</div>
+  <div class="footer-date">July 19 · 2026 · New Bedford, MA</div>
   <div class="footer-note">With love &amp; gratitude for celebrating with us ✦</div>
 </footer>
 
@@ -850,7 +752,7 @@ const b64 = "/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAAB
 document.getElementById('hero-bg').style.backgroundImage = 'url(data:image/png;base64,' + b64 + ')';
 
 function tick() {
-  const wedding = new Date('2025-07-19T15:30:00');
+  const wedding = new Date('2026-07-19T15:30:00');
   const now = new Date();
   const diff = wedding - now;
   if (diff <= 0) {
@@ -869,9 +771,14 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 
-function handleRSVP() {
-  alert('Thank you! Once the Google Form is connected, your RSVP will be submitted there.');
-}
+
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
 </script>
 </body>
 </html>
